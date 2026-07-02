@@ -1,0 +1,49 @@
+# 1. The name of our automation assembly line
+name: Code Quality and Container Check
+
+# when should this automation run? on pushing to main branch
+on:
+  push:
+    branches: [main]
+
+# what jobs should it perform?
+jobs:
+
+  # verify Python code is clean and doesn't have syntax errors
+  validate-python:
+    runs-on: : ubuntu-latest
+    steps:
+      - name: Step 1 - Pull code from GitHub
+        uses: actions/checkout@v4
+
+      - name: Step 2 - Install Python 3.11 on the Linux server
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Step 3 - Install code linter (Flake8)
+        run: |
+          python -m pip install --upgrade pip
+                  pip install flake8
+      - name: Step 4 - Scan code for syntax breaking bugs
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+  validate-docker:
+    needs: validate-python
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1 - Pull code from GitHub
+        uses: actions/checkout@v4
+
+      - name: Step 2 - Set up Docker build engine
+        uses: docker.setup-buildx-action@v3
+
+      - name: Step 3 - Try building the Docker container
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false # just test if it compiles successfully! not pushing it live yet
+          tags: cat-dog-classifier:test
