@@ -11,7 +11,7 @@ jobs:
 
   # verify Python code is clean and doesn't have syntax errors
   validate-python:
-    runs-on: : ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Step 1 - Pull code from GitHub
         uses: actions/checkout@v4
@@ -25,7 +25,8 @@ jobs:
       - name: Step 3 - Install code linter (Flake8)
         run: |
           python -m pip install --upgrade pip
-                  pip install flake8
+          pip install flake8
+
       - name: Step 4 - Scan code for syntax breaking bugs
         run: |
           # stop the build if there are Python syntax errors or undefined names
@@ -39,7 +40,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Step 2 - Set up Docker build engine
-        uses: docker.setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v3
 
       - name: Step 3 - Try building the Docker container
         uses: docker/build-push-action@v5
