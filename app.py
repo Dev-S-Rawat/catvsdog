@@ -2,9 +2,11 @@ import io
 import os
 import torch
 import torch.nn.functional as F
+from dotenv import load_dotenv
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from PIL import Image
 
+load_dotenv()
 # supabase for cloud
 from supabase import create_client, Client
 
