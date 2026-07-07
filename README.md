@@ -96,4 +96,4 @@ cat_dog_project/
 
 ## 👤 Author
 
-**Pankaj Singh Rawat**
+**Devprakash Singh Rawat**
