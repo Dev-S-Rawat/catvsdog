@@ -89,8 +89,8 @@ cat_dog_project/
 
 ## 🔗 Links
 
-- **Frontend Dashboard:** [catvsdog-psr.streamlit.app](https://catvsdog-psr.streamlit.app/)
-- **API Core Engine:** [catvsdog-rfzr.onrender.com](https://catvsdog-rfzr.onrender.com)
+- **Frontend Dashboard:** [catvsdog-dev.streamlit.app](https://catvsdog-dev.streamlit.app/)
+- **API Core Engine:** [catvsdog-by15.onrender.com](https://catvsdog-by15.onrender.com)
 
 ---
 
